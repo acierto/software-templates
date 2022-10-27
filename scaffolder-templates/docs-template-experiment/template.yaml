@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: docs-template-experiment
-  title: Documentation Template (Experiment)
+  title: Documentation Template (Exp)
   description: Create a new standalone documentation project
   tags:
     - recommended
