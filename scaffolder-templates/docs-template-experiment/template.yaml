@@ -41,7 +41,7 @@ spec:
               - Group
     - title: Toggleable section
       required:
-        - name
+        - some_name
       properties:
         backstage:visible: ${{ parameters.enableExtraSection }}
         some_name:
