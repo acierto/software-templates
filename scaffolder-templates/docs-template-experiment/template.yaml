@@ -43,7 +43,7 @@ spec:
       required:
         - someName
       properties:
-        backstage:visible: ${{ parameters.enableExtraSection }}
+        backstage:visible: enableExtraSection
         someName:
           title: Some name
           type: string
