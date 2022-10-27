@@ -42,8 +42,8 @@ spec:
     - title: Toggleable section
       required:
         - someName
+      backstage:visible: enableExtraSection
       properties:
-        backstage:visible: enableExtraSection
         someName:
           title: Some name
           type: string
