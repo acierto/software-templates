@@ -41,10 +41,10 @@ spec:
               - Group
     - title: Toggleable section
       required:
-        - some_name
+        - someName
       properties:
         backstage:visible: ${{ parameters.enableExtraSection }}
-        some_name:
+        someName:
           title: Some name
           type: string
           ui:field: EntityNamePicker
