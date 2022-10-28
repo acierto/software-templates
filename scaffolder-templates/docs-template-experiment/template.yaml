@@ -31,9 +31,6 @@ spec:
         enableExtraSection:
           title: Enable an extra section
           type: boolean
-        enableExtraSectionDescription:
-          title: Enable description in an extra section
-          type: boolean
         owner:
           title: Owner
           type: string
@@ -51,11 +48,6 @@ spec:
           title: Some name
           type: string
           ui:field: EntityNamePicker
-        someDescription:
-          title: Some description
-          type: string
-          ui:field: EntityNamePicker
-          backstage:visible: enableExtraSectionDescription
     - title: Choose a location
       required:
         - repoUrl
