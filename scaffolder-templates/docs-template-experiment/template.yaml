@@ -27,7 +27,7 @@ spec:
         description:
           title: Description
           type: string
-          pattern: [a-z0-9]{20,100}
+          pattern: "^[a-z0-9]{20,100}$"
           description: A description for the component
         enableExtraSection:
           title: Enable an extra section
