@@ -67,7 +67,7 @@ spec:
       name: Mock Step 1
       action: debug:log
       input:
-        delay: 60000
+        delay: 30
         listWorkspace: true
         message: Mock Step 1
 
@@ -75,7 +75,7 @@ spec:
       name: Mock Step 2
       action: debug:log
       input:
-        delay: 60000
+        delay: 30
         listWorkspace: true
         message: Mock Step 2
 
@@ -83,7 +83,7 @@ spec:
       name: Mock Step 3
       action: debug:log
       input:
-        delay: 60000
+        delay: 30
         listWorkspace: true
         message: Mock Step 3
 
