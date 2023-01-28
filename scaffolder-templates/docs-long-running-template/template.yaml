@@ -65,33 +65,27 @@ spec:
 
     - id: mock-step-1
       name: Mock Step 1
-      action: debug:log
+      action: debug:wait
       input:
-        delay: 30
-        listWorkspace: true
-        message: Mock Step 1
+        time: 10
 
     - id: mock-step-2
       name: Mock Step 2
-      action: debug:log
+      action: debug:wait
       input:
-        delay: 30
-        listWorkspace: true
-        message: Mock Step 2
+        delay: 20
 
     - id: mock-step-3
       name: Mock Step 3
-      action: debug:log
+      action: debug:wait
       input:
         delay: 30
-        listWorkspace: true
-        message: Mock Step 3
 
     - id: publish
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ["github.com"]
+        allowedHosts: [ "github.com" ]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
