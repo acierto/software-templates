@@ -73,13 +73,13 @@ spec:
       name: Mock Step 2
       action: debug:wait
       input:
-        delay: 20
+        time: 20
 
     - id: mock-step-3
       name: Mock Step 3
       action: debug:wait
       input:
-        delay: 30
+        time: 30
 
     - id: publish
       name: Publish
