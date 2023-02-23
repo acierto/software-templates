@@ -8,7 +8,7 @@ metadata:
     - recommended
     - techdocs
     - mkdocs
-    - alpha
+    - experimental
 spec:
   owner: backstage/techdocs-core
   type: documentation
