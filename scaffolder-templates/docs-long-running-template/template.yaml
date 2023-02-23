@@ -8,10 +8,10 @@ metadata:
     - recommended
     - techdocs
     - mkdocs
-    - experimental
 spec:
   owner: backstage/techdocs-core
   type: documentation
+  lifecycle: experimental
 
   parameters:
     - title: Fill in some steps
