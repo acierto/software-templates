@@ -68,19 +68,19 @@ spec:
       name: Mock Step 1
       action: debug:wait
       input:
-        time: 10
+        seconds: 10
 
     - id: mock-step-2
       name: Mock Step 2
       action: debug:wait
       input:
-        time: 20
+        seconds: 20
 
     - id: mock-step-3
       name: Mock Step 3
       action: debug:wait
       input:
-        time: 30
+        seconds: 30
 
     - id: publish
       name: Publish
