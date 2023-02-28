@@ -65,7 +65,7 @@ spec:
           owner: ${{ parameters.owner }}
 
     - id: mock-step-1
-      name: Mock Step 1
+      name: Mock Step 1 with a long description text to see if it trimmed well or not
       action: debug:wait
       input:
         seconds: 5
@@ -114,6 +114,42 @@ spec:
 
     - id: mock-step-9
       name: Mock Step 9
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-10
+      name: Mock Step 10
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-11
+      name: Mock Step 11
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-12
+      name: Mock Step 12
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-13
+      name: Mock Step 13
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-14
+      name: Mock Step 14
+      action: debug:wait
+      input:
+        seconds: 5
+
+    - id: mock-step-15
+      name: Mock Step 15
       action: debug:wait
       input:
         seconds: 5
