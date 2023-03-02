@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: docs-long-running-template
-  title: Documentation Long running Template
+  name: docs-with-links
+  title: Documentation With Links
   description: Create a new standalone documentation project
   tags:
     - recommended
