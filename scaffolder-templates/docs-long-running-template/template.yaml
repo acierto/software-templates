@@ -4,8 +4,6 @@ metadata:
   name: docs-long-running-template
   title: Documentation Long running Template
   description: Create a new standalone documentation project
-  annotations: 
-     kickOffButtonLabel: 'Run'
   tags:
     - recommended
     - techdocs
@@ -14,6 +12,9 @@ spec:
   owner: backstage/techdocs-core
   type: documentation
   lifecycle: experimental
+
+  configurations: 
+    kickOffButtonText: 'Run'
 
   parameters:
     - title: Fill in some steps
