@@ -15,6 +15,7 @@ spec:
 
   configurations: 
     kickOffButtonText: 'Run'
+    reviewButtonText: 'Verify'
 
   parameters:
     - title: Fill in some steps
