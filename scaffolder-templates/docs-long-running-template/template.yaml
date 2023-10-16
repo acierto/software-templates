@@ -13,6 +13,12 @@ spec:
   type: documentation
   lifecycle: experimental
 
+  configurations:
+    buttonLabels:
+      backButtonText: 'Previous'
+      createButtonText: 'Edit'
+      reviewButtonText: 'Verify'
+
   parameters:
     - title: Fill in some steps
       required:
