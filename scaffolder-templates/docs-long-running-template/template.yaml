@@ -13,7 +13,7 @@ spec:
   type: documentation
   lifecycle: experimental
 
-  configurations:
+  presentation:
     buttonLabels:
       backButtonText: 'Previous'
       createButtonText: 'Edit'
