@@ -12,6 +12,8 @@ spec:
   owner: backstage/techdocs-core
   type: documentation
   lifecycle: experimental
+  recovery:
+    strategy: 'idempotent'
 
   presentation:
     buttonLabels:
@@ -73,28 +75,26 @@ spec:
     - id: mock-step-1
       name: Mock Step 1
       action: debug:wait
+      recovery:
+        dependsOn: fetch
       input:
         seconds: 10
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      recovery:
+        dependsOn: fetch
+      input:
+        allowedHosts: [ "github.com" ]
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
 
     - id: mock-step-2
       name: Mock Step 2
       action: debug:wait
       input:
-        seconds: 20
-
-    - id: mock-step-3
-      name: Mock Step 3
-      action: debug:wait
-      input:
-        seconds: 30
-
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: [ "github.com" ]
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        seconds: 10
 
     - id: register
       name: Register
