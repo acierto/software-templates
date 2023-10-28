@@ -78,7 +78,7 @@ spec:
       recovery:
         dependsOn: fetch
       input:
-        seconds: 10
+        seconds: 15
 
     - id: publish
       name: Publish
@@ -94,7 +94,7 @@ spec:
       name: Mock Step 2
       action: debug:wait
       input:
-        seconds: 10
+        seconds: 15
 
     - id: register
       name: Register
