@@ -15,12 +15,6 @@ spec:
   recovery:
     strategy: 'restart'
 
-  presentation:
-    buttonLabels:
-      backButtonText: 'Previous'
-      createButtonText: 'Edit'
-      reviewButtonText: 'Verify'
-
   parameters:
     - title: Fill in some steps
       required:
@@ -88,6 +82,22 @@ spec:
       input:
         seconds: 30
 
+    - id: mock-step-3
+      name: Mock Step 3
+      action: debug:wait
+      recovery:
+        dependsOn: fetch
+      input:
+        seconds: 120
+
+    - id: mock-step-4
+      name: Mock Step 4
+      action: debug:wait
+      recovery:
+        dependsOn: fetch
+      input:
+        seconds: 120
+
     - id: publish
       name: Publish
       action: publish:github
@@ -98,8 +108,8 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
-    - id: mock-step-3
-      name: Mock Step 3
+    - id: mock-step-5
+      name: Mock Step 5
       action: debug:wait
       input:
         seconds: 15
