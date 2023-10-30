@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: docs-mocks-template
+  name: docs-mocks-idempotent-template
   title: Documentation Mock Idempotent running Template
   description: Create a new standalone documentation project
   tags:
