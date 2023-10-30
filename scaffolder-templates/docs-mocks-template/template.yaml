@@ -86,7 +86,7 @@ spec:
       recovery:
         dependsOn: fetch
       input:
-        seconds: 15
+        seconds: 30
 
     - id: publish
       name: Publish
