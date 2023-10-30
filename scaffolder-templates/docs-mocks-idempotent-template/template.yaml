@@ -69,16 +69,12 @@ spec:
     - id: mock-step-1
       name: Mock Step 1
       action: debug:wait
-      recovery:
-        dependsOn: fetch
       input:
         seconds: 15
 
     - id: mock-step-2
       name: Mock Step 2
       action: debug:wait
-      recovery:
-        dependsOn: fetch
       input:
         seconds: 30
 
@@ -86,7 +82,7 @@ spec:
       name: Mock Step 3
       action: debug:wait
       recovery:
-        dependsOn: fetch
+        dependsOn: mock-step-2
       input:
         seconds: 30
 
