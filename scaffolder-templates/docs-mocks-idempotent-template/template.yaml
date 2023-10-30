@@ -76,7 +76,7 @@ spec:
       name: Mock Step 2
       action: debug:wait
       input:
-        seconds: 30
+        seconds: 15
 
     - id: mock-step-3
       name: Mock Step 3
