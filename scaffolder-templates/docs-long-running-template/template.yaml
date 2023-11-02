@@ -13,7 +13,7 @@ spec:
   type: documentation
   lifecycle: experimental
   recovery:
-    strategy: 'idempotent'
+    strategy: 'restart'
 
   presentation:
     buttonLabels:
