@@ -59,6 +59,13 @@ spec:
         targetPath: ${{ parameters.targetPath }}
         values:
           name: ${{parameters.name}}
+    - id: mock-step-1
+      name: Mock Step 1
+      action: debug:wait
+      recovery:
+        dependsOn: fetch
+      input:
+        seconds: 30
     - id: publish
       name: Publish
       action: publish:gitlab:merge-request
