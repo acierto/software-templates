@@ -7,6 +7,8 @@ metadata:
 spec:
   owner: backstage/techdocs-core
   type: service
+  recovery:
+    strategy: 'idempotent'
 
   parameters:
     - title: Fill in some steps
