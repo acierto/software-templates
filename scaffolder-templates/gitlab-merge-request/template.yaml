@@ -65,7 +65,7 @@ spec:
       name: Mock Step 1
       action: debug:wait
       recovery:
-        dependsOn: fetch
+        dependsOn: template
       input:
         seconds: 30
     - id: publish
