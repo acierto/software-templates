@@ -86,33 +86,33 @@ spec:
         seconds: 10
         extra: ${{ steps.mockStep2.output.waitedFor }}
 
-    - id: mostStep4
+    - id: mockStep4
       name: Mock Step 4
       action: debug:wait
       input:
         seconds: 30
         extra: ${{ steps.mockStep3.output.waitedFor }}
 
-    - id: mostStep5
+    - id: mockStep5
       name: Mock Step 5
       action: debug:wait
       input:
         seconds: 30
         extra: ${{ steps.mockStep4.output.waitedFor }}
 
-    - id: mostStep6
+    - id: mockStep6
       name: Mock Step 6
       action: debug:wait
       input:
         seconds: 30
 
-    - id: mostStep7
+    - id: mockStep7
       name: Mock Step 7
       action: debug:wait
       input:
         seconds: 30
 
-    - id: mostStep8
+    - id: mockStep8
       name: Mock Step 8
       action: debug:wait
       input:
@@ -126,7 +126,7 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
-    - id: mostStep9
+    - id: mockStep9
       name: Mock Step 9
       action: debug:wait
       input:
