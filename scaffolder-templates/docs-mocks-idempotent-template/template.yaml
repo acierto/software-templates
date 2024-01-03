@@ -12,8 +12,8 @@ spec:
   owner: backstage/techdocs-core
   type: documentation
   lifecycle: experimental
-  recovery:
-    strategy: 'idempotent'
+  EXPERIMENTAL_recovery:
+    EXPERIMENTAL_strategy: 'start_over'
 
   parameters:
     - title: Fill in some steps
