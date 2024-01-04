@@ -16,7 +16,7 @@ spec:
   parameters:
     - title: About this template
       ui:ObjectFieldTemplate: AboutStep
-    - title: About this template
+    - title: About this template 2
       ui:ObjectFieldTemplate: AboutStep
       properties:
         description:
