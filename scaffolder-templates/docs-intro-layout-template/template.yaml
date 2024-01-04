@@ -16,6 +16,33 @@ spec:
   parameters:
     - title: About this template
       ui:ObjectFieldTemplate: AboutStep
+    - title: First step
+      properties:
+        preconditions:
+          title: Preconditions
+          type: string
+          description: Choose an option
+          enum:
+            - optionA
+            - optionB
+          enumNames:
+            - Option A
+            - Option B
+      dependencies:
+        preconditions:
+          oneOf:
+            - title: About
+              description: you have chosen option A
+              properties:
+                preconditions:
+                  enum:
+                    - optionA
+            - title: About
+              description: you have chosen option B
+              properties:
+                preconditions:
+                  enum:
+                    - optionB
     - title: Second step
       dependencies:
         preconditions:
