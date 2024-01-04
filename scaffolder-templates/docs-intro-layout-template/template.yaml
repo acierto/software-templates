@@ -73,6 +73,7 @@ spec:
           type: string
           description: A description for the component
     - title: Fill in some steps
+      ui:ObjectFieldTemplate: TwoColumn
       required:
         - name
         - description
