@@ -16,6 +16,28 @@ spec:
   parameters:
     - title: About this template
       ui:ObjectFieldTemplate: AboutStep
+    - title: Second step
+      dependencies:
+        preconditions:
+          oneOf:
+              - required:
+                - inputA
+                properties:
+                  preconditions:
+                    enum:
+                      - optionA
+                  inputA:
+                    title: Input A
+                    type: string
+              - required:
+                  - inputB
+                properties:
+                  preconditions:
+                    enum:
+                      - optionB
+                  inputA:
+                    title: Input B
+                    type: string
     - title: About this template 2
       ui:ObjectFieldTemplate: AboutStep
       properties:
