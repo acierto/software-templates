@@ -62,7 +62,7 @@ spec:
                   preconditions:
                     enum:
                       - optionB
-                  inputA:
+                  inputB:
                     title: Input B
                     type: string
     - title: About this template 2
