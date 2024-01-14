@@ -13,7 +13,7 @@ spec:
   type: documentation
   lifecycle: experimental
   EXPERIMENTAL_recovery:
-    EXPERIMENTAL_strategy: 'start_over'
+    EXPERIMENTAL_strategy: 'startOver'
 
   parameters:
     - title: Fill in some steps
