@@ -1,0 +1,28 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: circular-json-minimal-reproduction
+  title: Circular JSON Issue
+  description: Reproduce circular JSON Issue.
+spec:
+  owner: team
+  type: some-type
+  parameters:
+    - title: Parameters
+      properties:
+        value1:
+          title: Value 1
+          type: string
+          default: value1
+          oneOf:
+            - const: "value1"
+              title: "Value 1"
+            - const: "value2"
+              title: "Value 2"
+  steps:
+    - id: debug
+      name: Debug
+      action: debug:log
+      input:
+        message: "debug message"
+  output: {}
