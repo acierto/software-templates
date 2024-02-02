@@ -74,7 +74,7 @@ spec:
       recovery:
         dependsOn: fetch
       input:
-        seconds: 15
+        seconds: 3
 
     - id: publish-gitlab
       name: Publish GitLab
