@@ -76,7 +76,7 @@ spec:
       input:
         seconds: 3
 
-    - id: publish-github
+    - id: publishGithub
       name: Publish GitHub
       action: publish:github
       recovery:
@@ -97,7 +97,7 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        repoContentsUrl: ${{ steps.publishGithub.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
