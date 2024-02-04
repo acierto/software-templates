@@ -76,16 +76,6 @@ spec:
       input:
         seconds: 3
 
-    - id: publish-gitlab
-      name: Publish GitLab
-      action: publish:gitlab
-      recovery:
-        dependsOn: fetch
-      input:
-        allowedHosts: [ "gitlab.com" ]
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
-
     - id: publish-github
       name: Publish GitHub
       action: publish:github
