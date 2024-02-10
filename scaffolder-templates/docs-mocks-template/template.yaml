@@ -92,7 +92,7 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
-    - id: register
+    - id: registerGithub
       name: Register
       action: catalog:register
       if: ${{ parameters.repoUrl.includes('github.com') }}
@@ -100,7 +100,7 @@ spec:
         repoContentsUrl: ${{ steps.publishGithub.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
-    - id: register
+    - id: registerGitlab
       name: Register
       action: catalog:register
       if: ${{ parameters.repoUrl.includes('gitlab.com') }}
