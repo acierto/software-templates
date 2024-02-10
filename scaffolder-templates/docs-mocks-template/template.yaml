@@ -12,8 +12,6 @@ spec:
   owner: backstage/techdocs-core
   type: documentation
   lifecycle: experimental
-  recovery:
-    strategy: 'restart'
 
   parameters:
     - title: Fill in some steps
@@ -79,31 +77,41 @@ spec:
     - id: publishGithub
       name: Publish GitHub
       action: publish:github
-      recovery:
-        dependsOn: fetch
+      if: ${{ parameters.repoUrl.includes('github.com') }}
       input:
         allowedHosts: [ "github.com" ]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
-
-    - id: mock-step-9
-      name: Mock Step 9
-      action: debug:wait
+    - id: publishGitlab
+      name: Publish Gitlab
+      action: publish:gitlab
+      if: ${{ parameters.repoUrl.includes('gitlab.com') }}
       input:
-        seconds: 15
+        allowedHosts: [ "gitlab.com" ]
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
 
     - id: register
       name: Register
       action: catalog:register
+      if: ${{ parameters.repoUrl.includes('github.com') }}
       input:
         repoContentsUrl: ${{ steps.publishGithub.output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+    - id: register
+      name: Register
+      action: catalog:register
+      if: ${{ parameters.repoUrl.includes('gitlab.com') }}
+      input:
+        repoContentsUrl: ${{ steps.publishGitlab.output.repoContentsUrl }}
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: ${{ steps.register.output.catalogInfoUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
