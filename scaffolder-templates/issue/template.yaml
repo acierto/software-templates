@@ -1,0 +1,438 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: resource-info-template
+  title: Resource Entity
+  description:
+    Template helps you create a Resource in catalog-info.yaml.
+  links:
+    - url: https://backstage.io/docs/features/software-catalog/system-model/#resource
+      title: Resource info
+      icon: help
+spec:
+  owner: mock
+  type: catalog-yaml
+
+  parameters:
+    - title: Pick an existing repository - GitHub information
+      description: Define GitHub repository
+      required:
+        - repoUrl
+        - branchName
+        - fileName
+      properties:
+        repoUrl:
+          title: GitHub URL
+          type: string
+          description: 'The Github URL in format https://git.int.avast.com/owner/repository'
+          ui:field: SimpleGithubRepoUrlPicker
+          ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github:
+                  - workflow
+                  - repo
+            allowedHosts:
+              - github.com
+        branchName:
+          title: Branch Name
+          type: string
+          default: new_backstage_catalog_info_yaml
+        fileName:
+          title: File Name
+          type: string
+          default: catalog-info.yaml
+    - title: Fill basic information
+      required:
+        - name
+        - namespace
+        - description
+        - lifecycle
+        - owner
+      properties:
+        name:
+          title: Name ID
+          type: string
+          minLength: 1
+          ui:help: 'proxy'
+          examples:
+            - metadata-proxy
+          pattern: '^[a-z0-9A-Z_.-]{1,63}$'
+        description:
+          title: Description
+          type: string
+          description: 'A short (typically relatively few words, on one line) description of the entity.'
+          minLength: 1
+        namespace:
+          title: Namespace ID
+          type: string
+          minLength: 1
+          description: 'Namespace which groups projects and components. Usually git organization. [e.g.
+            scavenger]. Doc: https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional Allowed format: alfanumeric ID with a dash character'
+          examples:
+            - scavenger
+          pattern: '^[a-z0-9-]{1,63}$'
+        system:
+          title: System
+          type: string
+          description: System - Mandatory reference to the system under which the component belongs.
+          minLength: 1
+          ui:field: EntityPicker
+          ui:options:
+            defaultKind: System
+            defaultNamespace: false
+            allowedKinds:
+              - System
+        lifecycle:
+          title: Lifecycle
+          type: string
+          description: The lifecycle state
+          minLength: 1
+          anyOf:
+            - const: Production
+              title:
+                Production - Component deployed to production and active development is done on
+                it
+            - const: Maintenance only
+              title:
+                Maintenance only - Component deployed to production but it is no longer improved and
+                only critical maintenance is happening
+            - const: To be decommissioned
+              title: To be decommissioned - Component can be deployed in prod, but we plan to decommission it.
+            - const: Archived
+              title: Archived - Project archived and no longer running anywhere
+            - const: In Development
+              title:
+                In Development - Component not deployed to prod and active development is done on
+                it
+        owner:
+          title: Owner
+          type: string
+          description:
+            An entity reference (within the Backstage system) to the team or
+            person who is technically responsible for the component. (usually development
+            team/developer)
+          minLength: 1
+          ui:field: EntityPicker
+          ui:options:
+            defaultNamespace: false
+            allowedKinds:
+              - Group
+              - User
+    - title: Fill Resource detail information
+      required:
+        - detail
+      properties:
+        detail:
+          # ---------------------- 'database' ------------------------------------------------------------------------------------
+          title: Resource detail
+          type: object
+          description: 'Select your Resource type.'
+          oneOf:
+            - type: object
+              title: Database
+              description: Description of Database specific values
+              required:
+                - type
+                - platform
+                - technology
+              properties:
+                resourceType:
+                  title: Type
+                  type: string
+                  default: 'database'
+                  const: 'database'
+                  ui:widget: 'hidden'
+                type:
+                  title: Type
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "PostgreSql"
+                      title: "PostgreSql"
+                    - const: "Mysql"
+                      title: "Mysql"
+                    - const: "Cassandra"
+                      title: "Cassandra"
+                    - const: "BigTable"
+                      title: "BigTable"
+                    - const: "Redis"
+                      title: "Redis"
+                    - const: "BigQuery"
+                      title: "BigQuery"
+                    - const: "NoSQL"
+                      title: "NoSQL"
+                  examples:
+                    - 'Cassandra'
+                platform:
+                  title: 'Platform'
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "on-prem"
+                      title: "on-prem"
+                    - const: "AWS"
+                      title: "AWS"
+                    - const: "GCP"
+                      title: "GCP"
+                technology:
+                  title: 'Technology'
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "CloudSQL"
+                      title: "CloudSQL"
+                    - const: "PostgreSQL"
+                      title: "PostgreSQL"
+                    - const: "RDS"
+                      title: "RDS"
+                    - const: "MemoryStore"
+                      title: "MemoryStore"
+                    - const: "BigQuery"
+                      title: "BigQuery"
+                    - const: "BigTable"
+                      title: "BigTable"
+                    - const: "Redis"
+                      title: "Redis"
+                    - const: "S3"
+                      title: "S3"
+                    - const: "GCS"
+                      title: "GCS"
+                other:
+                  title: Other
+                  type: array
+                  description: A list of additional properties related to settings like Connection String. Use key - value to define any useful information.
+                  items:
+                    type: object
+                    required:
+                      - key
+                      - value
+                    properties:
+                      key:
+                        title: Property key
+                        type: string
+                        description: Property key name
+                        examples:
+                          - 'connectionString'
+                        minLength: 1
+                      value:
+                        title: Value
+                        type: string
+                        description: Property value
+                        ui:help: "Example - 'ppp-ctopl-backstage-56:europe-west1:backstage'"
+                        examples:
+                          - 'ppp-ctopl-backstage-56:europe-west1:backstage'
+                        minLength: 1
+
+            # ---------------------- 'messaging' ------------------------------------------------------------------------------------
+            - type: object
+              title: Messaging
+              description: Description of Messaging specific values
+              required:
+                - type
+                - platform
+                - technology
+              properties:
+                resourceType:
+                  title: Type
+                  type: string
+                  default: 'messaging'
+                  const: 'messaging'
+                  ui:widget: 'hidden'
+                type:
+                  title: Type
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "RabbitMQ"
+                      title: "RabbitMQ"
+                    - const: "Pub/Sub"
+                      title: "Pub/Sub"
+                    - const: "Kafka"
+                      title: "Kafka"
+                    - const: "SQS"
+                      title: "SQS"
+                  examples:
+                    - 'Kafka'
+                platform:
+                  title: 'Platform'
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "on-prem"
+                      title: "on-prem"
+                    - const: "AWS"
+                      title: "AWS"
+                    - const: "GCP"
+                      title: "GCP"
+                technology:
+                  title: 'Technology'
+                  type: string
+                  minLength: 1
+                  anyOf:
+                    - const: "RabbitMQ"
+                      title: "RabbitMQ"
+                    - const: "Pub/Sub"
+                      title: "Pub/Sub"
+                    - const: "Kafka"
+                      title: "Kafka"
+                    - const: "SQS"
+                      title: "SQS"
+                other:
+                  title: Other
+                  type: array
+                  description: A list of additional properties related to settings like Connection String. Use key - value to define any useful information.
+                  items:
+                    type: object
+                    required:
+                      - key
+                      - value
+                    properties:
+                      key:
+                        title: Property key
+                        type: string
+                        description: Property key name
+                        examples:
+                          - 'connectionString'
+                        minLength: 1
+                      value:
+                        title: Value
+                        type: string
+                        description: Property value
+                        ui:help: "Example - 'ppp-ctopl-backstage-56:europe-west1:backstage'"
+                        examples:
+                          - 'ppp-ctopl-backstage-56:europe-west1:backstage'
+                        minLength: 1
+
+            # ---------------------- 'other' ------------------------------------------------------------------------------------
+            - type: object
+              title: Other
+              description: Description of Other specific values
+              required:
+                - otherProperties
+              properties:
+                resourceType:
+                  title: Type
+                  type: string
+                  default: 'other'
+                  const: 'other'
+                  ui:widget: 'hidden'
+                otherProperties:
+                  title: List of Key/Value properties
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - key
+                      - value
+                    properties:
+                      key:
+                        title: Key
+                        type: string
+                      value:
+                        title: Value
+                        type: string
+
+    - title: Other references (optional)
+      properties:
+        links:
+          title: Links
+          type: array
+          description:
+            A list of external hyperlinks related to the entity. Links can
+            provide additional contextual information that may be located outside of
+            Backstage itself. For example, an admin dashboard or external CMS page.
+          items:
+            type: object
+            required:
+              - url
+              - title
+            properties:
+              url:
+                title: Url
+                type: string
+                description: A url in a standard uri format.
+                examples:
+                  - https://admin.example-org.com
+                minLength: 1
+              title:
+                title: Title
+                type: string
+                description: A user friendly display name for the link.
+                ui:help: 'Example - Admin Dashboard'
+                examples:
+                  - Admin Dashboard
+                minLength: 1
+              icon:
+                title: Icon
+                type: string
+                ui:field: IconPicker
+                description:
+                  A key representing a visual icon to be displayed in the
+                  UI.
+                ui:help: 'Example - dashboard'
+                examples:
+                  - dashboard
+              type:
+                title: Type
+                type: string
+                description: An optional value to categorize links into specific groups.
+                ui:help: 'Example - runbook, documentation, logs, dashboard'
+                examples:
+                  - runbook
+                  - documentation
+                  - logs
+                  - dashboard
+                minLength: 1
+  # ---------------------- S T E P S------------------------------------------------------------------------------------
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+          namespace: ${{ parameters.namespace }}
+          description: ${{ parameters.description }}
+          links: ${{ parameters.links }}
+          lifecycle: ${{ parameters.lifecycle }}
+          owner: ${{ parameters.owner }}
+          system: ${{ parameters.system }}
+          detail: ${{ parameters.detail }}
+          definition: ${{ parameters.definition }}
+          type: ${{ parameters.type }}
+
+    - id: rename
+      name: Rename file
+      action: fs:rename
+      input:
+        files:
+          - from: template-catalog-info.yaml
+            to: ${{ parameters.fileName }}
+
+    # This step publishes the contents of the working directory to GitHub.
+    - id: publish
+      name: Publish
+      action: publish:github:pull-request
+      input:
+        description: |
+          New catalog registration for component ${{ parameters.name }}
+          [Register catalog file](https://backstage.svc.int.avast.com/catalog-import) back into Backstage after the merge.
+        repoUrl: ${{ parameters.repoUrl | convertGitURL }}
+        branchName: ${{ parameters.branchName }}
+        title: Catalog registration
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: Click to review newly created Pull Request with a catalog definition file
+        url: ${{ steps.publish.output.remoteUrl }}
+        icon: github
+
