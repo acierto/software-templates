@@ -384,7 +384,7 @@ spec:
                   - documentation
                   - logs
                   - dashboard
-                minLength: 1
+                minLength: 1oc
   # ---------------------- S T E P S------------------------------------------------------------------------------------
 
   # These steps are executed in the scaffolder backend, using data that we gathered
