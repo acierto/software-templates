@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: docs-template
-  title: Documentation Template .
+  title: Documentation Template ..
   description: Create a new standalone documentation project
   tags:
     - recommended
@@ -70,14 +70,14 @@ spec:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-
-    - id: publishAgain
-      name: Publish Again
-      action: publish:github
-      input:
-        allowedHosts: [ "github.com" ]
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+#
+#    - id: publishAgain
+#      name: Publish Again
+#      action: publish:github
+#      input:
+#        allowedHosts: [ "github.com" ]
+#        description: This is ${{ parameters.name }}
+#        repoUrl: ${{ parameters.repoUrl }}
 
     - id: register
       name: Register
