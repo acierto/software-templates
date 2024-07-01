@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: docs-template
+  name: docs-to-fail-template
   title: Documentation Template (Failing)
   description: Create a new standalone documentation project
   tags:
