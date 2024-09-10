@@ -11,7 +11,8 @@ metadata:
 spec:
   owner: backstage/techdocs-core
   type: documentation
-
+  EXPERIMENTAL_recovery:
+    EXPERIMENTAL_strategy: 'startOver'
   parameters:
     - title: Fill in some steps
       required:
